@@ -30,24 +30,7 @@ async function getKeycloakConfig(): Promise<KeycloakConfig> {
   };
 }
 
-// async function getAccessToken(code: string): Promise<string> {
-//   const response = await axios.post(
-//     `${process.env.KEYCLOAK_BASE_URL}/realms/${process.env.KEYCLOAK_REALM}/protocol/openid-connect/token`,
-//     new URLSearchParams({
-//       grant_type: "authorization_code",
-//       code,
-//       client_id: process.env.KEYCLOAK_CLIENT_ID!,
-//       client_secret: process.env.KEYCLOAK_CLIENT_SECRET!,
-//       redirect_uri: process.env.KEYCLOAK_REDIRECT_URI!,
-//     }).toString(),
-//     { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
-//   );
-//   if (response.data?.access_token) {
-//     return response.data.access_token;
-//   } else {
-//     throw new Error("Failed to get access token");
-//   }
-// }
+
 
 app.use(cookieParser());
 
