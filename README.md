@@ -58,6 +58,16 @@ No diretório raiz do projeto onde se encontra o arquivo `docker-compose.yml`, i
 docker-compose up -d
 ```
 
+Inicie o projeto no typescript:
+```bash
+npx tsc   
+```
+
+Inicie o projeto no node:
+```bash
+node app.js   
+```
+
 ### Passo 4: Acessar o Service Provider
 
 Acesse a aplicação no navegador através do endereço `http://localhost:3000`.
