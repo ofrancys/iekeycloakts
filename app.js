@@ -15,32 +15,43 @@ app.use((req, res, next) => {
 });
 async function getKeycloakConfig() {
     const response = await axios_1.default.get(`${process.env.KEYCLOAK_BASE_URL}/realms/${process.env.KEYCLOAK_REALM}/.well-known/openid-configuration`);
-    console.info("Keycloak config loaded:", response.data);
+    console.log("Configurações Keycloak carregadas ", response.data);
     return {
         authorization_endpoint: response.data.authorization_endpoint,
         end_session_endpoint: response.data.end_session_endpoint,
         token_endpoint: response.data.token_endpoint,
     };
 }
-// async function getAccessToken(code: string): Promise<string> {
-//   const response = await axios.post(
-//     `${process.env.KEYCLOAK_BASE_URL}/realms/${process.env.KEYCLOAK_REALM}/protocol/openid-connect/token`,
-//     new URLSearchParams({
-//       grant_type: "authorization_code",
-//       code,
-//       client_id: process.env.KEYCLOAK_CLIENT_ID!,
-//       client_secret: process.env.KEYCLOAK_CLIENT_SECRET!,
-//       redirect_uri: process.env.KEYCLOAK_REDIRECT_URI!,
-//     }).toString(),
-//     { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
-//   );
-//   if (response.data?.access_token) {
-//     return response.data.access_token;
-//   } else {
-//     throw new Error("Failed to get access token");
-//   }
-// }
-app.use((0, cookie_parser_1.default)());
+async function getAccessToken(code) {
+    try {
+        const response = await axios_1.default.post(`${process.env.KEYCLOAK_BASE_URL}/realms/${process.env.KEYCLOAK_REALM}/protocol/openid-connect/token`, new URLSearchParams({
+            grant_type: "authorization_code",
+            code: code,
+            client_id: process.env.KEYCLOAK_CLIENT_ID,
+            client_secret: process.env.KEYCLOAK_CLIENT_SECRET,
+            redirect_uri: process.env.KEYCLOAK_REDIRECT_URI,
+        }).toString(), {
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+        });
+        if (response.data && response.data.access_token) {
+            return response.data.access_token;
+        }
+        else {
+            console.error("Failed to get access token:", response.data);
+            return undefined;
+        }
+    }
+    catch (error) {
+        console.error("Error while fetching access token:", error);
+        return undefined;
+    }
+}
+// Middleware 
+const cookieParserMiddleware = (0, cookie_parser_1.default)();
+app.use(cookieParserMiddleware);
+//app.use(cookieParser());
 app.get("/", (req, res) => {
     res.send(`
     <h1>Service Provider TS - </h1>
@@ -49,10 +60,10 @@ app.get("/", (req, res) => {
     </div>
   `);
 });
-app.get("/test", (req, res) => {
-    console.log("Rota teste");
-    res.send("Teste");
-});
+//app.get("/test", (req: Request, res: Response) => {
+//  console.log("Rota teste");
+// res.send("Teste");
+//});
 app.get("/login", async (req, res) => {
     const { authorization_endpoint } = await getKeycloakConfig();
     const params = new URLSearchParams({
@@ -70,8 +81,8 @@ app.get("/callback", async (req, res) => {
         res.status(400).send("Não encontrado");
         return;
     }
-    // const accessToken = await getAccessToken(code);
-    // res.cookie("access_token", accessToken).redirect("/");
+    const accessToken = await getAccessToken(code);
+    res.cookie("access_token", accessToken).redirect("/");
     res.send("Callback encontrado");
     return;
 });
@@ -84,4 +95,8 @@ app.get("/logout", async (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Service Provider running on port ${PORT}`);
+});
+process.on('uncaughtException', (err) => {
+    console.error('There was an uncaught error', err);
+    process.exit(1); // Optional: exit the process
 });
