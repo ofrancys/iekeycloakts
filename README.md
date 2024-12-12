@@ -58,7 +58,7 @@ No diretório raiz do projeto onde se encontra o arquivo `docker-compose.yml`, i
 docker-compose up -d
 ```
 
-Inicie o projeto no typescript:
+Compile o projeto no typescript:
 ```bash
 npx tsc   
 ```
@@ -86,4 +86,4 @@ Realize o cadastro de um novo usuário e faça o login utilizando as credenciais
 
 A configuração do SMTP_PASS do arquivo `.env` dentro do diretório `service-provider` deve ser feita de acordo com sua conta no Google. 
 É necessário gerar uma senha de 16 digitos em Senhas do App, com a url `gmail.com`, essa senha deve ser usada no SMTP_PASS.
-Se houver algum erro pode entrar diretamente no diretório adm do seu realm do Keycloak `http://localhost:8080/admin/master/console/#/maste
+Diretório adm do Keycloak `http://localhost:8080/admin/master/console/#/master`
