@@ -71,13 +71,13 @@ node app.js
 ### Passo 4: Acessar o Service Provider
 
 Acesse a aplicação no navegador através do endereço `http://localhost:3000`.
+Ao clicar em login será redirecionado para a tela inicial do Keycloak.
 
 Realize o cadastro de um novo usuário e faça o login utilizando as credenciais cadastradas, se tudo ocorrer corretamente você será redirecionado para a página de informações do usuário autenticado.
 
 ## Referências
 
 - [Keycloak Documentation](https://www.keycloak.org/documentation.html)
-- [Fastify Documentation](https://www.fastify.io/docs/latest/)
 - [Node.js Documentation](https://nodejs.org/en/docs/)
 - [Docker Documentation](https://docs.docker.com/)
 - [PostgreSQL Documentation](https://www.postgresql.org/docs/)
