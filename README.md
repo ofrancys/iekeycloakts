@@ -18,6 +18,7 @@ Certifique-se de que você tenha as seguintes ferramentas instaladas:
 
 - [Docker](https://www.docker.com/get-started)
 - [Docker Compose](https://docs.docker.com/compose/install/)
+- [Node.js Documentation](https://nodejs.org/pt/download/package-manager)
 
 ### Passo 1: Baixe o ZIP do projeto
 
@@ -31,22 +32,7 @@ Em seguida, navegue até o diretório do projeto e o abra no VS Code.
 
 ### Passo 2: Habilite o envio de e-mails no Keycloak
 
-Abra o arquivo `realm-config.yaml` localizado no diretório `keycloak-config`. Navegue até o final do arquivo e substitua a configuração SMTP por uma configuração válida,conforme o exemplo abaixo:
-
-```json
-  "smtpServer": {
-    "auth": "true",
-    "envelopeFrom": "",
-    "ssl": "false",
-    "port": "587",
-    "host": "smtp.server.com",
-    "replyTo": "",
-    "from": "admin@user.com",
-    "fromDisplayName": "Service Provider",
-    "user": "**********",
-    "password": "**********"
-  }
-```
+Abra o arquivo `realm-config.yaml` localizado no diretório `keycloak-config`. Navegue até o final do arquivo e substitua a configuração SMTP por uma configuração válida.
 
 ### Passo 3: Iniciar o Projeto
 
@@ -78,7 +64,7 @@ Realize o cadastro de um novo usuário e faça o login utilizando as credenciais
 ## Referências
 
 - [Keycloak Documentation](https://www.keycloak.org/documentation.html)
-- [Node.js Documentation](https://nodejs.org/en/docs/)
+- [Node.js Documentation](https://nodejs.org/en/docs/) 
 - [Docker Documentation](https://docs.docker.com/)
 - [PostgreSQL Documentation](https://www.postgresql.org/docs/)
 
