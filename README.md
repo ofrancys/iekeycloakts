@@ -24,7 +24,7 @@ Certifique-se de que você tenha as seguintes ferramentas instaladas:
 
 Local:
 
-# https://github.com/ofrancys/idEletronica
+# https://github.com/ofrancys/iekeycloakts
 
 Vá até o botão "<Code>" e baixe o arquivo ZIP.
 
