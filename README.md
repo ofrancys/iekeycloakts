@@ -39,10 +39,12 @@ Abra o arquivo `realm-config.yaml` localizado no diretório `keycloak-config`. N
 Inicie o Docker Desktop.
 
 No diretório raiz do projeto onde se encontra o arquivo `docker-compose.yml`, inicie o projeto executando o comando abaixo:
+No terminal:
 
 ```bash
 docker-compose up -d
 ```
+Utilize outro terminal:
 
 Compile o projeto no typescript:
 ```bash
@@ -59,7 +61,7 @@ node app.js
 Acesse a aplicação no navegador através do endereço `http://localhost:3000`.
 Ao clicar em login será redirecionado para a tela inicial do Keycloak.
 
-Realize o cadastro de um novo usuário e faça o login utilizando as credenciais cadastradas, se tudo ocorrer corretamente você será redirecionado para a página de informações do usuário autenticado.
+Realize o cadastro de um novo usuário e faça o login utilizando as credenciais cadastradas e será redirecionado para a página de informações do usuário autenticado.
 
 ## Referências
 
